@@ -27,6 +27,8 @@ repositories {
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.5.RELEASE')
 	implementation('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('io.projectreactor:reactor-test')
