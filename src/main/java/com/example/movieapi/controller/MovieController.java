@@ -49,4 +49,19 @@ public class MovieController {
                 .map(updatedMovie -> ResponseEntity.ok(updatedMovie))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("{id}")
+    public Mono<ResponseEntity<Void>> deleteMovie(@PathVariable(value = "id") String id){
+        return movieRepository.findById(id)
+                .flatMap(existingMovie ->
+                    movieRepository.delete(existingMovie)
+                            .then(Mono.just(ResponseEntity.ok().<Void>build()))
+                )
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping
+    public Mono<Void> deleteAllMovies(){
+        return movieRepository.deleteAll();
+    }
 }
