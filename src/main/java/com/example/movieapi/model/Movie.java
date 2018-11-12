@@ -3,7 +3,7 @@ package com.example.movieapi.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Document
@@ -16,12 +16,12 @@ public class Movie {
 
     private String genre;
 
-    private Date releaseDate;
+    private LocalDateTime releaseDate;
 
     public Movie() {
     }
 
-    public Movie(String id, String name, String genre, Date releaseDate) {
+    public Movie(String id, String name, String genre, LocalDateTime releaseDate) {
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -52,11 +52,11 @@ public class Movie {
         this.genre = genre;
     }
 
-    public Date getReleaseDate() {
+    public LocalDateTime getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDateTime releaseDate) {
         this.releaseDate = releaseDate;
     }
 
