@@ -31,13 +31,6 @@ public class MovieApiApplication {
 			productFlux
 					.thenMany(movieRepository.findAll())
 					.subscribe(System.out::println);
-
-            /*operations.collectionExists(Product.class)
-                    .flatMap(exists -> exists ? operations.dropCollection(Product.class) : Mono.just(exists))
-					.thenMany(v -> operations.createCollection(Product.class))
-					.thenMany(productFlux)
-					.thenMany(repository.findAll())
-					.subscribe(System.out::println);*/
 		};
 	}
 }

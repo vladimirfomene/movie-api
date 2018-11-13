@@ -1,0 +1,7 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwk:
+          jwk-set-uri: https://vladimirfomene.auth0.com/.well-known/jwks.json
+          issuer-uri: https://vladimirfomene.auth0.com/

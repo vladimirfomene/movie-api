@@ -2,34 +2,41 @@ package com.example.movieapi.security;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
+import org.springframework.security.oauth2.jwt.ReactiveJwtDecoders;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
-@Configuration
-@EnableResourceServer
-public class SecurityConfig extends ResourceServerConfigurerAdapter {
-    @Value("${security.oauth2.resource.id}")
-    private String resourceId;
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/movies").authenticated()
-                .antMatchers(HttpMethod.PUT, "/movies/{id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/movies/{id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/movies").authenticated()
-                .anyRequest().permitAll();
+@EnableWebFluxSecurity
+public class SecurityConfig {
+
+    @Value("${spring.security.oauth2.resourceserver.jwk.issuer-uri}")
+    private String issuerUri;
+
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
+        http
+                .authorizeExchange()
+                .anyExchange().authenticated()
+                .and()
+                .oauth2ResourceServer()
+                .jwt();
+        return http.build();
+        //.pathMatchers(HttpMethod.GET,"/movies/**").permitAll()
     }
 
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId(resourceId);
 
+
+    @Bean
+    public ReactiveJwtDecoder jwtDecoder() {
+        return ReactiveJwtDecoders.fromOidcIssuerLocation(issuerUri);
     }
+
+
 
 
 }
