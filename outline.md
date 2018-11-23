@@ -9,7 +9,13 @@ Softwares you need to install to follow the tutorial:
 * JDK 10
 * Any text editor or IDE of your choice, though I recommend Intellij
 
-## Theorotical Foundation for Spring WebFlux
+## Theoretical Foundation for Spring WebFlux
+
+### Problem Statement: Blocking I/O
+* Briefly explain it.
+
+### Solution: Non-Blocking Asynchronous I/O
+* Briefly explain the solution.
 
 ### What is Reactive Programming?
 * Introduce reactive programming as described by the reactive manifesto.
@@ -22,13 +28,18 @@ Softwares you need to install to follow the tutorial:
 * Introduce Asynchronous programming.
 * Why it matters?
 
-### What is Functional and Declarative Programming?
-* Introduce functional and declarative Programming.
-* Why do they matter?
+### Benefits of Reactive programming
 
-## Reactive Programming with Project Reactor
-* Introduce Project Reactor.
-* How does it support reactive programming.
+## Reactive Programming with Reactive Streams
+* Introduce Project Reactor as an implementation of reactive streams.
+* What are Reactive Streams and what is their specifications.
+
+### Reactive Streams DataFlow
+* Lifecycle of data in reative streams
+
+### Project Reactor's implementation of Reactive Streams
+* Reactor's data types for reactive streams.
+* Reactor's operators for reactive streams.
 
 ## What is Spring WebFlux
 * Introduction to Spring WebFlux.
@@ -48,6 +59,9 @@ fashion and Functional endpoints style.
 ## Securing your Spring WebFlux API with Auth0
 * Add security configurations in `application.yml`
 * Add a Security class to decode authentication tokens.
+
+## Testing Your API
+* Test the API with curl and a Auth0 access token.
 
 ## Conclusion
 * Remind the reader what he/she learned in the article.
